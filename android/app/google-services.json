@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "465816794543",
+    "project_id": "phone-verification-dc543",
+    "storage_bucket": "phone-verification-dc543.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465816794543:android:702f406a74021f93da2b5a",
+        "android_client_info": {
+          "package_name": "com.example.flutter_new"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465816794543-c966jf8c7jt86d94f4gtp5dfsjbi7hgj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCl3BOgPFqZwKYSu8Rg55GS8fu3k71Gsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465816794543-c966jf8c7jt86d94f4gtp5dfsjbi7hgj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
