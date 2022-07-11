@@ -16,14 +16,15 @@ class CustomListTileField extends StatefulWidget {
   // var options = [''];
 
   // ignore: use_key_in_widget_constructors
-  CustomListTileField(
-      {Key key,
-      this.fieldValue,
-      this.label,
-      this.hint,
-      this.icon,
-      this.validation,
-      this.keyboard});
+  CustomListTileField({
+    Key key,
+    this.fieldValue,
+    this.label,
+    this.hint,
+    this.icon,
+    this.validation,
+    this.keyboard,
+  });
 
   @override
   // ignore: no_logic_in_create_state
@@ -41,7 +42,6 @@ class _CustomListTileFieldState extends State<CustomListTileField> {
   int keyboard;
   String password;
   String confirmPassword;
-  bool passwordVisibility = false;
   // ignore: unused_field
   String _chosenValue;
   // List<DropdownMenuItem<String>> dropDownItems = [];
@@ -99,7 +99,7 @@ class _CustomListTileFieldState extends State<CustomListTileField> {
                   return null;
                 }
               : null,
-          obscureText: keyboard == 2 ? !passwordVisibility : false,
+          obscureText: keyboard == 2 ? true : false,
           maxLength: keyboard == 1 ? 10 : null,
           maxLines: 1,
           keyboardType: keyboard == 1 || keyboard == 4
@@ -152,18 +152,7 @@ class _CustomListTileFieldState extends State<CustomListTileField> {
                       },
                       child: Icon(icon),
                     )
-                  : icon != null &&
-                          icon == Icons.visibility &&
-                          icon == Icons.visibility_off
-                      ? GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              passwordVisibility = !passwordVisibility;
-                            });
-                          },
-                        )
-                      : Icon(
-                          passwordVisibility ? Icons.visibility_off : icon))),
+                  : Icon(icon))),
     );
   }
 }
