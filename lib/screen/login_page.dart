@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                   fieldValue: passwordController,
                   label: getTranslated(context, 'password'),
                   hint: getTranslated(context, 'password'),
-                  icon: Icons.password,
+                  icon: Icons.visibility_off,
                   validation: true,
                   keyboard: 2,
                 ),

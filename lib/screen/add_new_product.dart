@@ -24,25 +24,28 @@ class _AddNewProductState extends State<AddNewProduct> {
   final List<DropdownList> dropdownList = DropdownList.dropdownlist().toList();
   final TextEditingController controller = TextEditingController();
   TextEditingController calanderController = TextEditingController();
-  DateTimeRange dateRange;
+  DateTimeRange dateRange = DateTimeRange(
+    start: DateTime.now(),
+    end: DateTime.now().add(const Duration(hours: 24 * 3)),
+  );
 
-  Future pickDateRange(BuildContext context) async {
-    final initialDateRange = DateTimeRange(
-      start: DateTime.now(),
-      end: DateTime.now().add(const Duration(hours: 24 * 3)),
-    );
-    final newDateRange = showDateRangePicker(
+  Future pickDateRange() async {
+    DateTimeRange newDateTimeRange = await showDateRangePicker(
       context: context,
+      initialDateRange: dateRange,
       firstDate: DateTime(DateTime.now().year - 5),
       lastDate: DateTime(DateTime.now().year + 5),
-      initialDateRange: dateRange ?? initialDateRange,
     );
-    if (newDateRange == null) return;
-    setState(() => dateRange = newDateRange as DateTimeRange);
+    if (newDateTimeRange == null) return;
+    setState(() {
+      dateRange = newDateTimeRange;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final start = dateRange.start;
+    final end = dateRange.end;
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -171,33 +174,74 @@ class _AddNewProductState extends State<AddNewProduct> {
                 validation: true,
                 keyboard: 4,
               ),
-              const Text("Date Range",
-                  style: TextStyle(fontSize: 10, color: Colors.black)),
-              Row(
-                children: [
-                  CustomButton(
-                    name: dateRange == null
-                        ? "From"
-                        : DateFormat('MM/dd/yyyy').format(dateRange.start),
-                    color: Colors.blue,
-                    press: () {
-                      pickDateRange(context);
-                    },
-                  ),
-                  const Icon(
-                    Icons.arrow_right_alt_outlined,
-                    color: Colors.black,
-                  ),
-                  CustomButton(
-                    name: dateRange == null
-                        ? "Until"
-                        : DateFormat('MM/dd/yyyy').format(dateRange.end),
-                    color: Colors.blue,
-                    press: () {
-                      pickDateRange(context);
-                    },
-                  ),
-                ],
+              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.only(left: 20, top: 10),
+                child: Text("Date Range",
+                    style: TextStyle(fontSize: 15, color: Colors.black)),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          pickDateRange();
+                        },
+                        child: Card(
+                          color: Colors.blueAccent,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            child: Text(
+                              dateRange == null
+                                  ? "From"
+                                  : '${start.day}/${start.month}/${start.year}',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    const Center(
+                      child: Icon(
+                        Icons.arrow_right_alt_outlined,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          pickDateRange();
+                        },
+                        child: Card(
+                          color: Colors.blueAccent,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            child: Text(
+                              dateRange == null
+                                  ? "Until"
+                                  : '${end.day}/${end.month}/${end.year}',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

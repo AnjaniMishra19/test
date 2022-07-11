@@ -90,50 +90,6 @@ class _ProductsState extends State<Products> {
                   ? _currentSliderValue
                   : defaultSilderValue,
               sliderValueChangeHandler),
-          RaisedButton(
-              child: const Text("Bottom Sheet"),
-              onPressed: () {
-                Get.bottomSheet(Wrap(
-                  children: [
-                    ListTile(
-                      leading: const Icon(Icons.camera),
-                      title: const Text("Camera"),
-                      onTap: () async {
-                        try {
-                          final image = await ImagePicker()
-                              .pickImage(source: ImageSource.camera);
-                          if (image == null) return;
-                          final imageTemporary = File(image.path);
-                          setState(() {
-                            this.image = imageTemporary;
-                          });
-                        } on PlatformException catch (e) {
-                          // ignore: avoid_print
-                          print('Failed to pick image $e');
-                        }
-                      },
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.photo),
-                      title: const Text("Gallery"),
-                      onTap: () async {
-                        try {
-                          final image = await ImagePicker()
-                              .pickImage(source: ImageSource.gallery);
-                          if (image == null) return;
-                          final imageTemporary = File(image.path);
-                          setState(() {
-                            this.image = imageTemporary;
-                          });
-                        } on PlatformException catch (e) {
-                          // ignore: avoid_print
-                          print('Failed to pick image $e');
-                        }
-                      },
-                    )
-                  ],
-                ));
-              })
         ],
       ),
     );

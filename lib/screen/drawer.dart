@@ -1,3 +1,4 @@
+import 'package:sahash/customWidgets/dropdown.dart';
 import 'package:sahash/helper/shimmer.dart';
 import 'package:sahash/localisation/localisation_constant.dart';
 import 'package:sahash/routes/route_name.dart';
@@ -159,6 +160,19 @@ class _MyDrawerState extends State<MyDrawer> {
                         MaterialPageRoute(
                             builder: ((context) =>
                                 const UnderConstructionPage())));
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.phone),
+                  title: const Text('Dropdown'),
+                  trailing: const Icon(Icons.send),
+                  tileColor: isSelected ? Colors.grey[300] : Colors.transparent,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) =>
+                                const DropDownButtonDemo())));
                   },
                 ),
               ],

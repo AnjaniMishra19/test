@@ -35,9 +35,9 @@ class _ProfileState extends State<Profile> {
       _isLoading = true;
     });
     allData = await _registrationService.getLocalRegistration();
-    emailController.text = allData[0]['email'];
-    mobileController.text = allData[0]['mobile'];
-    nameController.text = allData[0]['name'];
+    emailController.text = allData[0]["email"];
+    mobileController.text = allData[0]["mobile"];
+    nameController.text = allData[0]["name"];
     setState(() {
       _isLoading = false;
     });

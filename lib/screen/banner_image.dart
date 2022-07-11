@@ -1,24 +1,22 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class BannerImage extends StatefulWidget {
-  const BannerImage({Key key}) : super(key: key);
+  List<String> imgList;
+  BannerImage({Key key, this.imgList}) : super(key: key);
 
   @override
   State<BannerImage> createState() => _BannerImageState();
 }
 
 class _BannerImageState extends State<BannerImage> {
-  List<String> imgList = [
-    'assets/product.jpg',
-    'assets/order.jpg',
-  ];
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CarouselSlider(
-          items: imgList
+          items: widget.imgList
               .map((item) => Image.asset(
                     item,
                     fit: BoxFit.cover,

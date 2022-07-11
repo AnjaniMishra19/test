@@ -25,7 +25,10 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 10,
             ),
-            const BannerImage(),
+            BannerImage(imgList: const [
+              'assets/product.jpg',
+              'assets/order.jpg',
+            ]),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               CustomCardView(
                 flexno: 3,
