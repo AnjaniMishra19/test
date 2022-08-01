@@ -1,9 +1,9 @@
 import 'dart:io';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:sahash/customWidgets/custom_button.dart';
 import 'package:sahash/customWidgets/custom_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:sahash/screen/search_view.dart';
+import 'package:sahash/screen/search_view2.dart';
 
 class Products extends StatefulWidget {
   const Products({Key key}) : super(key: key);
@@ -64,15 +64,6 @@ class _ProductsState extends State<Products> {
                   ),
                 ),
               ),
-              // Container(
-              //   width: 40,
-              //   height: 100,
-              //   child: Image.asset('assets/icon_info.png',
-              //       width: 180,
-              //       height: 100,
-              //       color: Colors.black,
-              //       fit: BoxFit.cover),
-              // ),
               const Expanded(
                 child: Text(
                   "Your waiting time will be reduced through confirmation",
@@ -90,6 +81,32 @@ class _ProductsState extends State<Products> {
                   ? _currentSliderValue
                   : defaultSilderValue,
               sliderValueChangeHandler),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: CustomButton(
+              name: 'Search',
+              color: Colors.blueAccent,
+              press: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SearchView()));
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: CustomButton(
+              name: 'Search 2',
+              color: Colors.blueAccent,
+              press: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SearchView2()));
+              },
+            ),
+          ),
         ],
       ),
     );
